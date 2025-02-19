@@ -10,45 +10,91 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #f5f5f5; /* Light gray background */
+            color: #333; /* Dark gray text */
             line-height: 1.6;
+            overflow-x: hidden;
         }
+
+        /* Header with Parallax Effect */
         header {
-            background: rgb(14, 186, 225);
+            background: linear-gradient(135deg, #666, #444); /* Gray gradient */
             color: white;
             text-align: center;
-            padding: 30px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+            opacity: 0.1;
+            z-index: 1;
         }
         header img {
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             display: block;
             margin: 10px auto;
             border: 3px solid white;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            z-index: 2;
+            position: relative;
+        }
+        header img:hover {
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
         header h1 {
             font-size: 36px;
             margin: 10px 0;
+            animation: fadeInDown 2s ease-in-out;
+            z-index: 2;
+            position: relative;
         }
         header p {
             font-size: 18px;
             font-weight: lighter;
+            animation: fadeInUp 2.5s ease-in-out;
+            z-index: 2;
+            position: relative;
         }
+
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Navigation Bar */
         nav {
-            background: rgb(5, 147, 179);
+            background: #444; /* Dark gray */
             padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         nav ul {
             list-style: none;
             padding: 0;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
         nav ul li {
             margin: 0 15px;
@@ -59,47 +105,57 @@
             text-decoration: none;
             padding: 10px 15px;
             display: inline-block;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         nav ul li a:hover {
-            background-color: #003366;
+            background-color: #666; /* Medium gray */
+            color: #fff;
+            border-radius: 5px;
         }
         nav ul li:hover {
             transform: translateY(-10px);
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Section Styling */
+        /* Sections with Floating Effect */
         section {
             padding: 40px 20px;
             margin: 20px auto;
             max-width: 1000px;
-            background: rgb(14, 186, 225);
+            background: white;
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             margin-top: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 6s infinite ease-in-out;
+        }
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
         }
         section h2 {
             font-size: 32px;
-            color: white;
+            color: #444; /* Dark gray */
             margin-bottom: 20px;
             text-align: center;
+            animation: slideIn 1s ease-in-out;
         }
-        section p {
-            font-size: 16px;
-            margin-bottom: 15px;
-            line-height: 1.8;
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
+
+        /* List Items with Hover Effects */
         section ul {
             padding: 0;
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
         section ul li {
-            background: #f9f9f9;
+            background: #f9f9f9; /* Light gray */
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -109,19 +165,10 @@
             transform: translateY(-10px);
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
         }
-        section ul li h4 {
-            font-size: 22px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        section ul li p {
-            font-size: 16px;
-            color: #666;
-        }
 
         /* Contact Section */
         #contact {
-            background-color: rgb(14, 186, 225);
+            background-color: #444; /* Dark gray */
             color: white;
             padding: 30px 20px;
             text-align: center;
@@ -134,18 +181,35 @@
             color: white;
             font-weight: bold;
             text-decoration: none;
+            transition: color 0.3s ease;
         }
         #contact a:hover {
-            text-decoration: underline;
+            color: #666; /* Medium gray */
         }
 
         /* Footer Styling */
         footer {
             text-align: center;
             padding: 10px;
-            background: #0056b3;
+            background: #333; /* Dark gray */
             color: white;
             margin-top: 30px;
+        }
+
+        /* Sarcastic PS Section */
+        #ps {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9; /* Light gray */
+            margin: 20px auto;
+            max-width: 1000px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        #ps p {
+            font-size: 16px;
+            color: #666; /* Medium gray */
+            font-style: italic;
         }
     </style>
 </head>
@@ -171,11 +235,13 @@
         </ul>
     </nav>
 
+    <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
         <p>Hi, I’m Anjan, a ServiceNow wizard, data science geek, and professional problem solver. I automate workflows like a magician, analyze data like a detective, and occasionally break production (but only to make it better). I thrive on challenges, love learning new tech, and firmly believe that every bug is just a misunderstood feature waiting to be optimized. When I’m not coding, I’m probably at the gym lifting weights or debugging my meal plan.</p>
     </section>
 
+    <!-- Education Section -->
     <section id="education">
         <h2>Education</h2>
         <p><strong>Master's in Engineering Science (Data Science)</strong> - University at Buffalo</p>
@@ -184,9 +250,9 @@
         <p>Developed a strong foundation in programming, embedded systems, and signal processing. Applied problem-solving skills to technical challenges in engineering and software development.</p>
     </section>
 
+    <!-- Work Experience Section -->
     <section id="work-experience">
         <h2>Work Experience</h2>
-    
         <h3>ServiceNow Developer - Chyantech, USA (May 2023 – Present)</h3>
         <ul>
             <li>Managed comprehensive ServiceNow platform upgrades, patching, and performance tuning to ensure scalability and uninterrupted operations across the enterprise.</li>
@@ -195,7 +261,6 @@
             <li>Enhanced ITSM processes, improving SLA compliance by 20% and accelerating issue resolution.</li>
             <li>Created performance analytics dashboards to track KPIs and SLAs, enabling data-driven decisions.</li>
         </ul>
-    
         <h3>ServiceNow Developer - Ensurity Technologies, India (Jan 2022 – Aug 2022)</h3>
         <ul>
             <li>Designed workflows, forms, and UI policies to optimize ITSM processes, reducing task resolution times.</li>
@@ -203,14 +268,12 @@
             <li>Conducted requirement-gathering sessions with stakeholders, delivering scalable solutions using Agile methodologies.</li>
             <li>Developed custom dashboards and reports to monitor KPIs, improving operational efficiency.</li>
         </ul>
-    
         <h3>Junior ServiceNow Developer Intern - Ensurity Technologies, India (Sept 2021 – Jan 2022)</h3>
         <ul>
             <li>Developed ServiceNow modules, automating routine tasks with Flow Designer and reducing manual workload by 25%.</li>
             <li>Assisted in implementing ITIL-aligned processes, improving issue resolution times and system usability.</li>
             <li>Participated in cross-functional meetings to propose innovative automation solutions.</li>
         </ul>
-    
         <h3>Frontend Developer Intern - Ensurity Technologies, India (Dec 2020 – Aug 2021)</h3>
         <ul>
             <li>Designed interactive UI components, improving usability and accessibility for diverse user groups.</li>
@@ -218,7 +281,8 @@
             <li>Implemented dynamic UI policies and scripts to enhance user task efficiency.</li>
         </ul>
     </section>
-    
+
+    <!-- Skills Section -->
     <section id="skills">
         <h2>Skills</h2>
         <ul>
@@ -231,7 +295,8 @@
             <li><strong>Project Management:</strong> Agile, Kanban, DevOps, Waterfall</li>
         </ul>
     </section>
-    
+
+    <!-- Certifications Section -->
     <section id="certifications">
         <h2>Certifications</h2>
         <ul>
@@ -245,6 +310,7 @@
         </ul>
     </section>
 
+    <!-- Honors & Awards Section -->
     <section id="honors-awards">
         <h2>Honors & Awards</h2>
         <ul>
@@ -254,7 +320,8 @@
             </li>
         </ul>
     </section>
-    
+
+    <!-- Publications Section -->
     <section id="publications">
         <h2>Publications</h2>
         <ul>
@@ -268,12 +335,10 @@
             </li>
         </ul>
     </section>
-    
-    
 
+    <!-- Projects Section -->
     <section id="projects">
         <h2>Projects</h2>
-
         <h3>ServiceNow Projects</h3>
         <ul>
             <li>
@@ -289,7 +354,6 @@
                 <p>Designed an automated workflow for employee onboarding and offboarding to streamline account provisioning and deprovisioning. Integrated role-based access control for secure operations.</p>
             </li>
         </ul>
-
         <h3>Data Projects</h3>
         <ul>
             <li>
@@ -305,7 +369,6 @@
                 <p>Built a time-series forecasting model to predict future sales trends based on historical data. Used ARIMA and LSTM neural networks for accurate demand forecasting.</p>
             </li>
         </ul>
-
         <h3>Web Development Projects</h3>
         <ul>
             <li>
@@ -331,6 +394,7 @@
         </ul>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact">
         <h2>Contact</h2>
         <p>Phone: (716) 295-3672</p>
@@ -338,6 +402,13 @@
         <p>LinkedIn: <a href="https://www.linkedin.com/in/anjan-k/" target="_blank">Anjan K</a></p>
     </section>
 
+    <!-- Sarcastic PS Section -->
+    <section id="ps">
+        <h2>PS</h2>
+        <p><em>Look, I could’ve made you click through a dozen pages just to find what you need, but let’s be real—nobody has the patience for that (including me). So, I did us both a favor and packed everything neatly into a single page. Efficient? Yes. Lazy? Maybe. But hey, at least you’re not stuck in an endless loop of ‘Next Page’ buttons. 😉</em></p>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Anjan Krishna Kandimalla. All rights reserved.</p>
     </footer>
